@@ -23,19 +23,19 @@ final case class Config(
 ) { self =>
 
   /**
-   * @return  the redacted application full version name, eg. 1.0.0
+   * @return  the feistel application full version name, eg. 1.0.0
    */
   lazy val appVersion: String = getClass.getPackage.getImplementationVersion
 
   /**
-   * Verify that the passed options and data are valid for handling a full redacted process
+   * Verify that the passed options and data are valid for handling a full feistel process
    */
   def checks: Boolean = {
     val cipher = self.rounds.getOrElse(0) >= 2 && self.key.nonEmpty && isAvailable(self.hash.getOrElse(""))
     if (!cipher)
-      throw new Exception(s"""Invalid arguments [key=${self.key.getOrElse("")},hashEngine=${self.hash.getOrElse("")},round=${self.rounds}]""")
+      println(s"""Invalid arguments [key=${self.key.getOrElse("")},hashEngine=${self.hash.getOrElse("")},round=${self.rounds}]""")
 
-    !isEmpty
+    cipher && !isEmpty
   }
 
   def isEmpty: Boolean = self.input.isEmpty
@@ -92,14 +92,10 @@ object Config {
     import builder._
     val v = EMPTY.appVersion
     OParser.sequence(
-      head("redacted", v),
-      programName(s"java -cp redacted-jar-${v}.jar fr.edgewhere.redacted.Main"),
-      opt[String]("input")
-        .abbr("i")
-        .action((x, c) => c.copy(input = x))
-        .text("the data to obfuscate"),
+      head("feistel", v),
+      programName(s"java -cp feistel-jar-${v}.jar fr.edgewhere.feistel.Main"),
       opt[Unit]("decrypt")
-        .abbr("x")
+        .abbr("d")
         .action((x, c) => c.copy(decrypt = true))
         .text("add to deobfuscate the passed input"),
       opt[Engine]("hashEngine")
@@ -118,6 +114,10 @@ object Config {
         .abbr("o")
         .action((x, c) => c.copy(output = Some(x)))
         .text("the optional name of the output file"),
+      arg[String]("<input>")
+        .unbounded()
+        .action((x, c) => c.copy(input = x))
+        .text("the data to process")
     )
   }
 }
