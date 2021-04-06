@@ -1,6 +1,6 @@
 organization := "fr.edgewhere"
 name := "feistel-jar"
-version := "0.1.0"
+version := "1.3.0"
 scalaVersion := "2.12.13"
 
 assemblyMergeStrategy in assembly := {
