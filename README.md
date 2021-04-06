@@ -1,2 +1,2 @@
 # feistel-jar
-Feistel cipher implementation for the JVM provinding format-preserving encryption
+_Feistel cipher implementation for the JVM providing format-preserving encryption_
