@@ -18,10 +18,9 @@ object Engine {
   val BLAKE2b: Engine = "blake-2b-256"
   val KECCAK: Engine = "keccak-256"
   val SHA_256: Engine = "sha-256"
-  val SHA_3: Engine = "sha3-256"
 
   def isAvailable(engine: String): Boolean =
-    engine == BLAKE2b || engine == KECCAK || engine == SHA_256 // || engine == SHA_3
+    engine == BLAKE2b || engine == KECCAK || engine == SHA_256
 
   def hash(input: String, using: Engine): Hash = using match {
     case BLAKE2b =>
@@ -30,8 +29,6 @@ object Engine {
       Keccak256.hash(input)
     case SHA_256 =>
       Sha256.hash(input)
-    case SHA_3 =>
-      throw UnknownEngineException()
     case _ => throw UnknownEngineException()
   }
 }
