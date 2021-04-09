@@ -7,7 +7,7 @@ import fr.edgewhere.BasicUnitSpecs
  *
  * @author  Cyril Dever
  * @since   1.0
- * @version 1.0
+ * @version 1.1
  */
 class EngineSpecs extends BasicUnitSpecs {
   import Engine._
@@ -27,9 +27,9 @@ class EngineSpecs extends BasicUnitSpecs {
     val sha256 = "c0c77f225dd222144bc4ef79dca00ab7d955f26da2b1e0f25df81f8a7e86917c"
     found = Engine.hash(data, SHA_256).toHex
     found should equal(sha256)
-//
-//    val sha3 = "9d6bf5763cb18bceb7c15270ff8400ae70bf3cd71928463a30f02805d913409d"
-//    found = Engine.hash(data, SHA_3).toHex
-//    found should equal(sha3)
+
+    val sha3 = "9d6bf5763cb18bceb7c15270ff8400ae70bf3cd71928463a30f02805d913409d"
+    found = Engine.hash(data, SHA_3).toHex
+    found should equal(sha3)
   }
 }
