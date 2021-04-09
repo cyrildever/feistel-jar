@@ -1,7 +1,6 @@
 package fr.edgewhere.feistel.common.utils.hash
 
 import fr.edgewhere.feistel.common.exception.UnknownEngineException
-import org.bouncycastle.jcajce.provider.digest.SHA3._
 import scorex.crypto.hash._
 
 /**
@@ -9,7 +8,7 @@ import scorex.crypto.hash._
  *
  * @author  Cyril Dever
  * @since   1.0
- * @version 1.0
+ * @version 1.2
  */
 object Engine {
   import Hash._
@@ -22,7 +21,7 @@ object Engine {
   val SHA_3: Engine = "sha3-256"
 
   def isAvailable(engine: String): Boolean =
-    engine == BLAKE2b || engine == KECCAK || engine == SHA_256
+    engine == BLAKE2b || engine == KECCAK || engine == SHA_256 // || engine == SHA_3
 
   def hash(input: String, using: Engine): Hash = using match {
     case BLAKE2b =>
@@ -32,9 +31,7 @@ object Engine {
     case SHA_256 =>
       Sha256.hash(input)
     case SHA_3 =>
-      val sha3 = new Digest256()
-      sha3.update(input.getBytes)
-      sha3.digest
+      throw UnknownEngineException()
     case _ => throw UnknownEngineException()
   }
 }
