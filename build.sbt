@@ -1,6 +1,6 @@
 organization := "fr.edgewhere"
 name := "feistel-jar"
-version := "1.3.4"
+version := "1.3.5"
 scalaVersion := "2.12.13"
 
 assemblyMergeStrategy in assembly := {
@@ -15,8 +15,8 @@ credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 resolvers += "Sonatype Releases" at "https://oss.sonatype.org/content/repositories/releases/"
 
 libraryDependencies ++= Seq(
-  "com.github.scopt" %% "scopt" % "4.0.0-RC2",
-  "org.scalatest" %% "scalatest" % "3.0.8",
-  "org.scorexfoundation" %% "scrypto" % "2.1.6",
-  "org.bouncycastle" % "bcprov-jdk15to18" % "1.64" % "provided"
+  "com.github.scopt" %% "scopt" % "4.0.1",
+  "org.scalatest" %% "scalatest" % "3.2.9",
+  "org.scorexfoundation" %% "scrypto" % "2.1.10",
+  "org.bouncycastle" % "bcprov-jdk15to18" % "1.69" % "provided"
 )

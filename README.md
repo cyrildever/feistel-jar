@@ -38,8 +38,8 @@ There is no restriction on the ![$F$](https://render.githubusercontent.com/rende
 
 You may use the JAR as a stand alone application on the command line:
 ```
-feistel 1.3.0
-Usage: java -cp feistel-jar-1.3.0.jar fr.edgewhere.feistel.Main [options] <input>
+feistel 1.3.5
+Usage: java -cp feistel-jar-1.3.5.jar fr.edgewhere.feistel.Main [options] <input>
 
   -d, --decrypt            add to deobfuscate the passed input
   -h, --hashEngine <value>
@@ -51,13 +51,13 @@ Usage: java -cp feistel-jar-1.3.0.jar fr.edgewhere.feistel.Main [options] <input
 ```
 eg.
 ```console
-$ java -cp path/to/feistel-jar-1.3.0.jar fr.edgewhere.feistel.Main 'myWordToObfuscate'
+$ java -cp path/to/feistel-jar-1.3.5.jar fr.edgewhere.feistel.Main 'myWordToObfuscate'
 ```
 
 #### Library
 
 ```sbt
-libraryDependencies += "fr.edgewhere" %% "feistel" % "1.3.0"
+libraryDependencies += "fr.edgewhere" %% "feistel" % "1.3.5"
 ```
 _NB: This library hasn't been published to a central Maven repository yet. Please contact me if you want to use it._
 
