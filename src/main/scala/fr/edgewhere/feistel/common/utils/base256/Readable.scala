@@ -1,12 +1,12 @@
 package fr.edgewhere.feistel.common.utils.base256
 
-import javax.xml.bind.DatatypeConverter
+import fr.edgewhere.feistel.common.utils.hex.Hex
 
 /**
  * Readable class
  *
  * @author  Cyril Dever
- * @since   1.0
+ * @since   2.0
  * @version 1.0
  */
 object Readable {
@@ -30,11 +30,11 @@ object Readable {
      */
     def string: String = r.bytes.map(_.toChar).mkString // TODO toString couldn't be overridden either
 
-    def toHex: String = DatatypeConverter.printHexBinary(bytes).toLowerCase
+    def toHex: String = Hex.byteArrayToHexString(bytes)
   }
 
   def fromHex(str: String): Readable =
-    Readable(DatatypeConverter.parseHexBinary(str).map(b => charAt(b.toInt)).mkString)
+    Hex.stringToSomeByteArray(str).getOrElse(Seq.empty).map(b => charAt(b.toInt)).mkString
 
   val CHARSET = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^`abcdefghijklmnopqrstuvwxyz{|}€¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷ùúûüýÿăąĊčđĕĘğħĩĭıĵķĿŀŁłňŋŏœŖřŝşŦŧũūůŲŵſƀƁƂƄƆƇƔƕƗƙƛƜƟƢƥƦƧƩƪƭƮưƱƲƵƸƺƾǀǁǂƿǬǮǵǶǹǻǿ"
 

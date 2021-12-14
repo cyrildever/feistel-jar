@@ -10,8 +10,8 @@ import fr.edgewhere.feistel.common.utils.hash.Engine._
  * @since   1.0
  * @version 1.0
  * @example {{{
- *  $ sbt assembly && java -cp target/scala-2.12/feistel-jar-0.1.0.jar fr.edgewhere.feistel.Main 'myWordToObfuscate'
- *  $ java -cp target/scala-2.12/feistel-jar-0.1.0.jar fr.edgewhere.feistel.Main -d '!f^w=€¦-Hyrbq¡#bs'
+ *  $ sbt assembly && java -cp target/scala-2.12/feistel-jar-1.4.0.jar fr.edgewhere.feistel.Main 'myWordToObfuscate'
+ *  $ java -cp target/scala-2.12/feistel-jar-1.4.0.jar fr.edgewhere.feistel.Main -d '!f^w=€¦-Hyrbq¡#bs'
  * }}}
  */
 object Main extends App {
