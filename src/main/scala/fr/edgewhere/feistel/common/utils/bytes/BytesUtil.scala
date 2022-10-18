@@ -55,5 +55,5 @@ object BytesUtil {
    * @param bytes The byte array to use
    * @return the string representation of the passed byte array
    */
-  def toString(bytes: Array[Byte]): String = "[" + bytes.map(c => if (c.toInt < 0) c.toInt + 256 else c.toInt).mkString(" ") + "]"
+  def printString(bytes: Array[Byte]): String = "[" + bytes.map(c => if (c.toInt < 0) c.toInt + 256 else c.toInt).mkString(" ") + "]"
 }

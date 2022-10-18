@@ -43,9 +43,9 @@ class BytesUtilSpecs extends BasicUnitSpecs {
     val found = xorBytes("1234".getBytes, "abcd".getBytes)
     found should equal(expected)
   }
-  "BytesUtil.toString" should "produce the right string" in {
+  "BytesUtil.printString" should "return the right string" in {
     val expected = "[123 45]"
-    val found = BytesUtil.toString(Array[Byte](123.toByte, 45.toByte))
+    val found = BytesUtil.printString(Array[Byte](123.toByte, 45.toByte))
     found should equal(expected)
   }
 }

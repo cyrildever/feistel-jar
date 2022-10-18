@@ -9,6 +9,7 @@ import fr.edgewhere.feistel.common.utils.hash.Engine._
 import fr.edgewhere.feistel.common.utils.strings.StringsUtil._
 import fr.edgewhere.feistel.common.utils.xor.Neutral
 import fr.edgewhere.feistel.common.utils.xor.Operation._
+
 import java.nio.{ByteBuffer, ByteOrder}
 
 /**
@@ -112,8 +113,48 @@ object Feistel {
         left + right
       }
 
-    private[FPECipher] def round(item: String, index: Int): String = {
+    def decryptNumber(ciphered: Int): Int =
+      if (ciphered == 0) 0
+      else {
+        val buf = ByteBuffer.allocate(4)
+        buf.order(ByteOrder.BIG_ENDIAN)
+        buf.putInt(ciphered)
+        // Apply the FPE Feistel cipher
+        var (left, right) = splitBytes(buf.array)
+        var short = false
+        if (left(0).equals(0.toByte) && left(1).equals(0.toByte)) {
+          // It's a small number
+          left = Array[Byte](right(0))
+          right = Array[Byte](right(1))
+          short = true
+        }
+        if (self.rounds % 2 != 0 && left.length != right.length) {
+          left = left ++ Array[Byte](right(0))
+          right = right.slice(1, right.length-1)
+        }
+        for (i <- 0 until self.rounds) {
+          var (leftRound, rightRound) = (left, right)
+          if (left.length < right.length) {
+            leftRound = leftRound ++ Neutral(1).getBytes
+          }
+          right = left
+          val rnd = roundBytes(leftRound, self.rounds - i - 1)
+          val (tmp, extended) = if (rightRound.length + 1 == rnd.length) {
+            rightRound = rightRound ++ left.slice(left.length - 1, left.length)
+            (xorBytes(rightRound, rnd), true)
+          } else {
+            (xorBytes(rightRound, rnd), false)
+          }
+          left = if (extended) tmp.slice(0, tmp.length - 1) else tmp
+        }
+        val parts = left ++ right
+        val res = ByteBuffer.allocate(4)
+        res.order(ByteOrder.BIG_ENDIAN)
+        res.put(if (short) Array[Byte](0, 0) ++ parts else parts)
+        res.getInt(0)
+      }
 
+    private[FPECipher] def round(item: String, index: Int): String = {
       val addition = add(item, extract(self.key, index, item.length))
       val hashed = Engine.hash(addition, self.engine)
       extract(hashed.toHex, index, item.length)

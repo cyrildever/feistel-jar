@@ -54,4 +54,16 @@ class FeistelSpecs extends BasicUnitSpecs {
     val blake2 = Feistel.FPECipher(BLAKE2b, "8ed9dcc1701c064f0fd7ae235f15143f989920e0ee9658bb7882c8d7d5f05692", 10).decrypt(fromBlake2)
     blake2 should equal (expected)
   }
+  "FPECipher.decryptNumber" should "return the right number" in {
+    val expected = 123456789
+    val cipher = Feistel.FPECipher(SHA_256, "some-32-byte-long-key-to-be-safe", 128)
+    val found = cipher.decryptNumber(22780178)
+    found should equal (expected)
+
+    val smallNumber = cipher.decryptNumber(24359)
+    smallNumber should equal (123)
+
+    val zero = cipher.decryptNumber(0)
+    zero should equal(0)
+  }
 }
