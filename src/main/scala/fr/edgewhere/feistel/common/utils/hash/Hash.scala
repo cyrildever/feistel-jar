@@ -6,13 +6,15 @@ import fr.edgewhere.feistel.common.utils.hex.Hex
  * Hash type
  *
  * @author  Cyril Dever
- * @since   2.0
- * @version 1.0
+ * @since   1.0
+ * @version 1.1
  */
 object Hash {
   type Hash = Seq[Byte]
 
   implicit class HashOps(h: Hash) {
+    def getBytes: Array[Byte] = h.toArray
+
     def toHex: String = h.map(b => f"$b%02x").mkString.toLowerCase
   }
 
