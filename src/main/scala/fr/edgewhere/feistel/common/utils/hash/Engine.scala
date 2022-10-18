@@ -10,7 +10,7 @@ import scorex.crypto.hash._
  *
  * @author  Cyril Dever
  * @since   1.0
- * @version 1.1
+ * @version 1.2
  */
 object Engine {
   import Hash._

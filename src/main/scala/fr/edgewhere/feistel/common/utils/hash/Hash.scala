@@ -6,8 +6,8 @@ import fr.edgewhere.feistel.common.utils.hex.Hex
  * Hash type
  *
  * @author  Cyril Dever
- * @since   2.0
- * @version 1.0
+ * @since   1.0
+ * @version 1.1
  */
 object Hash {
   type Hash = Seq[Byte]

@@ -85,6 +85,8 @@ object Feistel {
         res.getInt(0)
       }
 
+    def encryptString(line: String): Readable = encrypt(line)
+
     override def decrypt(ciphered: Readable): String =
       if (self.key.isEmpty || self.rounds < 2 || !isAvailable(self.engine)) throw WrongCipherParametersException()
       else if (ciphered.isEmpty) ""
@@ -153,6 +155,8 @@ object Feistel {
         res.put(if (short) Array[Byte](0, 0) ++ parts else parts)
         res.getInt(0)
       }
+
+    def decryptString(ciphered: Readable): String = decrypt(ciphered)
 
     private[FPECipher] def round(item: String, index: Int): String = {
       val addition = add(item, extract(self.key, index, item.length))
