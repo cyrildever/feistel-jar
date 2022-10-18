@@ -13,6 +13,8 @@ object Hash {
   type Hash = Seq[Byte]
 
   implicit class HashOps(h: Hash) {
+    def getBytes: Array[Byte] = h.toArray
+
     def toHex: String = h.map(b => f"$b%02x").mkString.toLowerCase
   }
 

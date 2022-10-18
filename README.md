@@ -38,8 +38,8 @@ There is no restriction on the ![$F$](https://render.githubusercontent.com/rende
 
 You may use the JAR as a stand alone application on the command line:
 ```
-feistel 1.4.1
-Usage: java -cp feistel-jar-1.4.1.jar fr.edgewhere.feistel.Main [options] <input>
+feistel 1.4.3
+Usage: java -cp feistel-jar-1.4.3.jar fr.edgewhere.feistel.Main [options] <input>
 
   -d, --decrypt            add to deobfuscate the passed input
   -h, --hashEngine <value>
@@ -51,13 +51,13 @@ Usage: java -cp feistel-jar-1.4.1.jar fr.edgewhere.feistel.Main [options] <input
 ```
 eg.
 ```console
-$ java -cp path/to/feistel-jar-1.4.1.jar fr.edgewhere.feistel.Main 'myWordToObfuscate'
+$ java -cp path/to/feistel-jar-1.4.3.jar fr.edgewhere.feistel.Main 'myWordToObfuscate'
 ```
 
 #### Library
 
 ```sbt
-libraryDependencies += "fr.edgewhere" %% "feistel_2.12" % "1.4.1"
+libraryDependencies += "fr.edgewhere" %% "feistel_2.12" % "1.4.3"
 ```
 _NB: This library hasn't been published to a central Maven repository yet. Please contact me if you want to use it._
 
@@ -79,13 +79,19 @@ import fr.edgewhere.feistel.common.utils.hash.Engine._
 val source = "my-source-data"
 
 // Encrypt
-val cipher := Feistel.FPECipher(SHA_256, "some-32-byte-long-key-to-be-safe", 10)
+val cipher = Feistel.FPECipher(SHA_256, "some-32-byte-long-key-to-be-safe", 10)
 val obfuscated = cipher.encrypt(source)
 
 // Decrypt
 val deciphered = cipher.decrypt(obfuscated)
 
 assert(deciphered == source)
+
+// For preserving numbers
+val sourceNumber = 123456789
+val obfuscatedNumber = cipher.encryptNumber(sourceNumber)
+val decipheredNumber = cipher.decryptNumber(obfuscatedNumber)
+assert(decipheredNumber == sourceNumber)
 ```
 
 
@@ -108,4 +114,4 @@ See the [LICENSE](LICENSE) file.
 
 
 <hr />
-&copy; 2021 Cyril Dever. All rights reserved.
+&copy; 2021-2022 Cyril Dever. All rights reserved.

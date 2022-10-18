@@ -39,4 +39,18 @@ object Engine {
       sha3.digest
     case _ => throw UnknownEngineException()
   }
+
+  def hashBytes(input: Array[Byte], using: Engine): Hash = using match {
+    case BLAKE2b =>
+      Blake2b256.hash(input)
+    case KECCAK =>
+      Keccak256.hash(input)
+    case SHA_256 =>
+      Sha256.hash(input)
+    case SHA_3 =>
+      val sha3 = new Digest256()
+      sha3.update(input)
+      sha3.digest
+    case _ => throw UnknownEngineException()
+  }
 }
