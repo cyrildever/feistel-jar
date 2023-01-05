@@ -114,4 +114,4 @@ See the [LICENSE](LICENSE) file.
 
 
 <hr />
-&copy; 2021-2022 Cyril Dever. All rights reserved.
+&copy; 2021-2023 Cyril Dever. All rights reserved.
