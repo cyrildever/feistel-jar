@@ -5,7 +5,7 @@
     <artifactId>feistel-jar_2.12</artifactId>
     <packaging>jar</packaging>
     <description>feistel-jar</description>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
     <name>feistel-jar</name>
     <organization>
         <name>fr.edgewhere</name>
@@ -19,12 +19,12 @@
         <dependency>
             <groupId>com.github.scopt</groupId>
             <artifactId>scopt_2.12</artifactId>
-            <version>4.0.1</version>
+            <version>4.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_2.12</artifactId>
-            <version>3.2.9</version>
+            <version>3.2.14</version>
         </dependency>
         <dependency>
             <groupId>org.scorexfoundation</groupId>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15to18</artifactId>
-            <version>1.69</version>
+            <version>1.72</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
