@@ -1,15 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>fr.edgewhere</groupId>
+    <groupId>com.cyrildever</groupId>
     <artifactId>feistel-jar_2.12</artifactId>
     <packaging>jar</packaging>
-    <description>feistel-jar</description>
-    <version>1.4.3</version>
-    <name>feistel-jar</name>
+    <version>1.5.0</version>
+
+    <name>Feistel FPE</name>
+    <description>Scala library and JVM executable implementing the Feistel cipher for Format-Preserving Encryption (FPE)</description>
     <organization>
-        <name>fr.edgewhere</name>
+        <name>Cyril Dever</name>
     </organization>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -24,7 +34,7 @@
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_2.12</artifactId>
-            <version>3.2.14</version>
+            <version>3.2.15</version>
         </dependency>
         <dependency>
             <groupId>org.scorexfoundation</groupId>
@@ -39,30 +49,6 @@
         </dependency>
     </dependencies>
     <repositories>
-        <repository>
-            <id>sociometrique</id>
-            <name>sociometrique</name>
-            <url>http://sociometrique.com:8081/nexus/content/repositories/sociometrique/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>tutshtmaven</id>
-            <name>tutsht-maven</name>
-            <url>http://tutsht.com:8081/nexus/content/repositories/tutsht/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>mymavenproxyreleases</id>
-            <name>my-maven-proxy-releases</name>
-            <url>http://tutsht.com:8081/nexus/content/repositories/central/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>myivyproxyreleases</id>
-            <name>my-ivy-proxy-releases</name>
-            <url>http://tutsht.com:8081/nexus/content/repositories/central/</url>
-            <layout>default</layout>
-        </repository>
         <repository>
             <id>SonatypeReleases</id>
             <name>Sonatype Releases</name>
