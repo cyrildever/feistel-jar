@@ -93,7 +93,7 @@ object Config {
     val v = EMPTY.appVersion
     OParser.sequence(
       head("feistel", v),
-      programName(s"java -cp feistel-jar-${v}.jar fr.edgewhere.feistel.Main"),
+      programName(s"java -cp feistel-jar-${v}.jar com.cyrildever.feistel.Main"),
       opt[Unit]("decrypt")
         .abbr("d")
         .action((x, c) => c.copy(decrypt = true))
