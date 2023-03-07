@@ -38,8 +38,8 @@ There is no restriction on the ![$F$](https://render.githubusercontent.com/rende
 
 You may use the JAR as a stand alone application on the command line:
 ```
-feistel 1.4.3
-Usage: java -cp feistel-jar-1.4.3.jar fr.edgewhere.feistel.Main [options] <input>
+feistel-jar 1.5.0
+Usage: java -cp feistel-jar_2.12-1.5.0.jar com.cyrildever.feistel.Main [options] <input>
 
   -d, --decrypt            add to deobfuscate the passed input
   -h, --hashEngine <value>
@@ -51,15 +51,14 @@ Usage: java -cp feistel-jar-1.4.3.jar fr.edgewhere.feistel.Main [options] <input
 ```
 eg.
 ```console
-$ java -cp path/to/feistel-jar-1.4.3.jar fr.edgewhere.feistel.Main 'myWordToObfuscate'
+$ java -cp path/to/feistel-jar_2.12-1.5.0.jar com.cyrildever.feistel.Main 'myWordToObfuscate'
 ```
 
 #### Library
 
 ```sbt
-libraryDependencies += "fr.edgewhere" %% "feistel_2.12" % "1.4.3"
+libraryDependencies += "com.cyrildever" %% "feistel-jar_2.12" % "1.5.0"
 ```
-_NB: This library hasn't been published to a central Maven repository yet. Please contact me if you want to use it._
 
 To get an obfuscated string from a source data using an automatic key generation from SHA-256 hashing function at each round, first instantiate a `Feistel.FPECipher`, passing it a hash engine, a base key and a number of rounds.
 Then, use the `encrypt()` method with the source data as argument. The result will be a readable custom Base-256 string.
@@ -73,8 +72,8 @@ You may use either of the following hash engine:
 The decryption process uses the obfuscated string and pass it to the `decrypt()` method of the `Feistel.FPECipher`.
 
 ```scala
-import fr.edgewhere.feistel.Feistel
-import fr.edgewhere.feistel.common.utils.hash.Engine._
+import com.cyrildever.feistel.Feistel
+import com.cyrildever.feistel.common.utils.hash.Engine._
 
 val source = "my-source-data"
 
@@ -94,12 +93,14 @@ val decipheredNumber = cipher.decryptNumber(obfuscatedNumber)
 assert(decipheredNumber == sourceNumber)
 ```
 
+_NB: You'd also need provide the expected [BouncyCastle JAR file](bcprov-jdk15to18-1.72.jar)._
+
 
 ### Other implementations
 
 For those interested, I also made two other implementations of this cipher in [Typescript](https://github.com/cyrildever/feistel-cipher) and in [Go](https://github.com/cyrildever/feistel).
 
-I also created a special library for redacting classified documents using this FPE cipher. Feel free to [contact me](mailto:cdever@edgewhere.fr) about it.
+I also created a special library for redacting classified documents using this FPE cipher. Feel free to [contact me](mailto:cdever@pep-s.com) about it.
 
 
 ### White papers
