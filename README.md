@@ -38,8 +38,8 @@ There is no restriction on the ![$F$](https://render.githubusercontent.com/rende
 
 You may use the JAR as a stand alone application on the command line:
 ```
-feistel 1.5.0
-Usage: java -cp feistel-jar-1.5.0.jar com.cyrildever.feistel.Main [options] <input>
+feistel-jar 1.5.0
+Usage: java -cp feistel-jar_2.12-1.5.0.jar com.cyrildever.feistel.Main [options] <input>
 
   -d, --decrypt            add to deobfuscate the passed input
   -h, --hashEngine <value>
@@ -51,13 +51,13 @@ Usage: java -cp feistel-jar-1.5.0.jar com.cyrildever.feistel.Main [options] <inp
 ```
 eg.
 ```console
-$ java -cp path/to/feistel-jar-1.5.0.jar com.cyrildever.feistel.Main 'myWordToObfuscate'
+$ java -cp path/to/feistel-jar_2.12-1.5.0.jar com.cyrildever.feistel.Main 'myWordToObfuscate'
 ```
 
 #### Library
 
 ```sbt
-libraryDependencies += "com.cyrildever" %% "feistel_2.12" % "1.5.0"
+libraryDependencies += "com.cyrildever" %% "feistel-jar_2.12" % "1.5.0"
 ```
 
 To get an obfuscated string from a source data using an automatic key generation from SHA-256 hashing function at each round, first instantiate a `Feistel.FPECipher`, passing it a hash engine, a base key and a number of rounds.
@@ -92,6 +92,8 @@ val obfuscatedNumber = cipher.encryptNumber(sourceNumber)
 val decipheredNumber = cipher.decryptNumber(obfuscatedNumber)
 assert(decipheredNumber == sourceNumber)
 ```
+
+_NB: You'd also need provide the expected [BouncyCastle JAR file](bcprov-jdk15to18-1.72.jar)._
 
 
 ### Other implementations
