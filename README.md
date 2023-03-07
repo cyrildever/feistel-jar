@@ -56,8 +56,9 @@ $ java -cp path/to/feistel-jar_2.12-1.5.0.jar com.cyrildever.feistel.Main 'myWor
 
 #### Library
 
+In a Scala 2.12 project:
 ```sbt
-libraryDependencies += "com.cyrildever" %% "feistel-jar_2.12" % "1.5.0"
+libraryDependencies += "com.cyrildever" %% "feistel-jar" % "1.5.0"
 ```
 
 To get an obfuscated string from a source data using an automatic key generation from SHA-256 hashing function at each round, first instantiate a `Feistel.FPECipher`, passing it a hash engine, a base key and a number of rounds.
