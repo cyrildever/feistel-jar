@@ -38,8 +38,8 @@ There is no restriction on the ![$F$](https://render.githubusercontent.com/rende
 
 You may use the JAR as a stand alone application on the command line:
 ```
-feistel-jar 1.5.0
-Usage: java -cp feistel-jar_2.12-1.5.0.jar com.cyrildever.feistel.Main [options] <input>
+feistel-jar 1.5.1
+Usage: java -cp feistel-jar_2.12-1.5.1.jar com.cyrildever.feistel.Main [options] <input>
 
   -d, --decrypt            add to deobfuscate the passed input
   -h, --hashEngine <value>
@@ -51,14 +51,14 @@ Usage: java -cp feistel-jar_2.12-1.5.0.jar com.cyrildever.feistel.Main [options]
 ```
 eg.
 ```console
-$ java -cp path/to/feistel-jar_2.12-1.5.0.jar com.cyrildever.feistel.Main 'myWordToObfuscate'
+$ java -cp path/to/feistel-jar_2.12-1.5.1.jar com.cyrildever.feistel.Main 'myWordToObfuscate'
 ```
 
 #### Library
 
 In a Scala 2.12 project:
 ```sbt
-libraryDependencies += "com.cyrildever" %% "feistel-jar" % "1.5.0"
+libraryDependencies += "com.cyrildever" %% "feistel-jar" % "1.5.1"
 ```
 
 To get an obfuscated string from a source data using an automatic key generation from SHA-256 hashing function at each round, first instantiate a `Feistel.FPECipher`, passing it a hash engine, a base key and a number of rounds.
@@ -111,7 +111,7 @@ I wrote two white papers to make it a fully FPE scheme that you can find in the 
 
 ### License
 
-This module is distributed under an MIT license.
+This module is distributed under a MIT license. \
 See the [LICENSE](LICENSE) file.
 
 

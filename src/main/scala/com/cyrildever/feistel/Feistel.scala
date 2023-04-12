@@ -16,7 +16,7 @@ import java.nio.{ByteBuffer, ByteOrder}
  *
  * @author  Cyril Dever
  * @since   1.0
- * @version 2.0
+ * @version 2.1
  */
 object Feistel {
   import com.cyrildever.feistel.common.utils.hash.Hash._
@@ -48,18 +48,20 @@ object Feistel {
         Readable(left.getBytes ++ right.getBytes)
       }
 
-    def encryptNumber(n: Int): Int =
+    def encryptNumber(n: Long): Long =
       if (self.key.isEmpty || self.rounds < 2 || !isAvailable(self.engine)) throw WrongCipherParametersException()
       else if (n == 0) 0
       else {
+        val size = if (n > Math.pow(2,32) - 1) 8 else 4
         val (data, short) = if (n < 256) {
           (Array[Byte](n.toByte), true)
         } else {
-          val buf = ByteBuffer.allocate(4)
+          val buf = ByteBuffer.allocate(size)
           buf.order(ByteOrder.BIG_ENDIAN)
-          buf.putInt(n)
-          (buf.array, false)
+          if (size > 4) buf.putLong(n) else buf.putInt(n.toInt)
+          (if (buf.array.head == 0) buf.array.slice(1, buf.array.length) else buf.array, false)
         }
+        val bits = data.length
         // Apply the FPE Feistel cipher
         var (left, right) = splitBytes(data)
         for (i <- 0 until self.rounds) {
@@ -77,11 +79,21 @@ object Feistel {
             right = right.slice(0, right.length-1)
           }
         }
-        val res = ByteBuffer.allocate(4)
+        val finalBytes = if (short) Array[Byte](0, 0) ++ left ++ right
+          else if (bits < size) {
+            var diff = size - bits
+            var concat = left ++ right
+            while (diff > 0) {
+              concat = Array[Byte](0) ++ concat
+              diff -= 1
+            }
+            concat
+          }
+          else left ++ right
+        val res = ByteBuffer.allocate(size)
         res.order(ByteOrder.BIG_ENDIAN)
-        if (short) res.put(Array[Byte](0, 0) ++ left ++ right)
-        else res.put(left ++ right)
-        res.getInt(0)
+        res.put(finalBytes)
+        if (size > 4) res.getLong(0) else res.getInt(0)
       }
 
     def encryptString(line: String): Readable = encrypt(line)
@@ -114,25 +126,25 @@ object Feistel {
         left + right
       }
 
-    def decryptNumber(ciphered: Int): Int =
+    def decryptNumber(ciphered: Long): Long =
       if (ciphered == 0) 0
       else {
-        val buf = ByteBuffer.allocate(4)
+        val size = if (ciphered > Math.pow(2,32) - 1) 8 else 4
+        val buf = ByteBuffer.allocate(8)
         buf.order(ByteOrder.BIG_ENDIAN)
-        buf.putInt(ciphered)
+        buf.putLong(ciphered)
         // Apply the FPE Feistel cipher
-        var (left, right) = splitBytes(buf.array)
-        var short = false
+        var (left, right) = splitBytes(buf.array.slice(8-size, 8))
         if (left(0).equals(0.toByte) && left(1).equals(0.toByte)) {
           // It's a small number
           left = Array[Byte](right(0))
           right = Array[Byte](right(1))
-          short = true
         }
         if (self.rounds % 2 != 0 && left.length != right.length) {
           left = left ++ Array[Byte](right(0))
           right = right.slice(1, right.length-1)
         }
+        if (left.head == 0) left = left.slice(1, left.length)
         for (i <- 0 until self.rounds) {
           var (leftRound, rightRound) = (left, right)
           if (left.length < right.length) {
@@ -148,11 +160,14 @@ object Feistel {
           }
           left = if (extended) tmp.slice(0, tmp.length - 1) else tmp
         }
-        val parts = left ++ right
-        val res = ByteBuffer.allocate(4)
+        var parts = left ++ right
+        while (parts.length < size) {
+          parts = Array[Byte](0) ++ parts
+        }
+        val res = ByteBuffer.allocate(size)
         res.order(ByteOrder.BIG_ENDIAN)
-        res.put(if (short) Array[Byte](0, 0) ++ parts else parts)
-        res.getInt(0)
+        res.put(parts)
+        if (size > 4) res.getLong(0) else res.getInt(0)
       }
 
     def decryptString(ciphered: Readable): String = decrypt(ciphered)

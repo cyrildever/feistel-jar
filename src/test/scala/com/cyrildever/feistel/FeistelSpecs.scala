@@ -34,6 +34,9 @@ class FeistelSpecs extends BasicUnitSpecs {
 
     val zero = cipher.encryptNumber(0)
     zero should equal(0)
+
+    val veryLargeNumber = cipher.encryptNumber(9007199254740991L)
+    veryLargeNumber should equal (7873237593534198L)
   }
   "FPECipher.decrypt" should "be deterministic" in {
     val nonFPE = Readable("\u0002Edgewhere")
@@ -65,5 +68,8 @@ class FeistelSpecs extends BasicUnitSpecs {
 
     val zero = cipher.decryptNumber(0)
     zero should equal(0)
+
+    val veryLargeNumber = cipher.decryptNumber(7873237593534198L)
+    veryLargeNumber should equal (9007199254740991L)
   }
 }
