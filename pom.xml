@@ -35,6 +35,7 @@
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_2.12</artifactId>
             <version>3.2.15</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.scorexfoundation</groupId>

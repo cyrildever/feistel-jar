@@ -14,7 +14,7 @@ resolvers += "Sonatype Releases" at "https://oss.sonatype.org/content/repositori
 
 libraryDependencies ++= Seq(
   "com.github.scopt" %% "scopt" % "4.1.0",
-  "org.scalatest" %% "scalatest" % "3.2.15",
+  "org.scalatest" %% "scalatest" % "3.2.15" % "test",
   "org.scorexfoundation" %% "scrypto" % "2.3.0",
   "org.bouncycastle" % "bcprov-jdk15to18" % "1.72" % "provided"
 )
