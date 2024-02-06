@@ -99,7 +99,7 @@ _NB: You'd also need provide the expected [BouncyCastle JAR file](bcprov-jdk15to
 
 ### Other implementations
 
-For those interested, I also made two other implementations of this cipher in [Typescript](https://github.com/cyrildever/feistel-cipher) and in [Go](https://github.com/cyrildever/feistel).
+For those interested, I also made two other implementations of this cipher in [Typescript](https://github.com/cyrildever/feistel-cipher), in [Go](https://github.com/cyrildever/feistel) and in [Python](https://github.com/cyrildever/feistel-py).
 
 I also created a special library for redacting classified documents using this FPE cipher. Feel free to [contact me](mailto:cdever@pep-s.com) about it.
 
@@ -116,4 +116,4 @@ See the [LICENSE](LICENSE) file.
 
 
 <hr />
-&copy; 2021-2023 Cyril Dever. All rights reserved.
+&copy; 2021-2024 Cyril Dever. All rights reserved.
