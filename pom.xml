@@ -4,7 +4,7 @@
     <groupId>com.cyrildever</groupId>
     <artifactId>feistel-jar_2.12</artifactId>
     <packaging>jar</packaging>
-    <version>1.5.5</version>
+    <version>1.5.6</version>
 
     <name>Feistel FPE</name>
     <description>Scala library and JVM executable implementing the Feistel cipher for Format-Preserving Encryption (FPE)</description>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_2.12</artifactId>
-            <version>3.2.18</version>
+            <version>3.2.19</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15to18</artifactId>
-            <version>1.77</version>
+            <version>1.78.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

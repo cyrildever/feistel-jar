@@ -49,3 +49,4 @@ dependency-reduced-pom.xml
 !project/plugins.sbt
 
 INSTALL.md
+sonatype_credentials
