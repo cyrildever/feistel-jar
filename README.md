@@ -38,8 +38,8 @@ There is no restriction on the $F$ function other than the XOR operation must be
 
 You may use the JAR as a stand alone application on the command line:
 ```
-feistel-jar 1.5.6
-Usage: java -cp feistel-jar_2.12-1.5.6.jar com.cyrildever.feistel.Main [options] <input>
+feistel-jar 1.5.7
+Usage: java -cp feistel-jar_2.12-1.5.7.jar com.cyrildever.feistel.Main [options] <input>
 
   -d, --decrypt            add to deobfuscate the passed input
   -h, --hashEngine <value>
@@ -51,14 +51,14 @@ Usage: java -cp feistel-jar_2.12-1.5.6.jar com.cyrildever.feistel.Main [options]
 ```
 eg.
 ```console
-$ java -cp path/to/feistel-jar_2.12-1.5.6.jar com.cyrildever.feistel.Main 'myWordToObfuscate'
+$ java -cp path/to/feistel-jar_2.12-1.5.7.jar com.cyrildever.feistel.Main 'myWordToObfuscate'
 ```
 
 #### Library
 
 In a Scala 2.12 project:
 ```sbt
-libraryDependencies += "com.cyrildever" %% "feistel-jar" % "1.5.6"
+libraryDependencies += "com.cyrildever" %% "feistel-jar" % "1.5.7"
 ```
 
 To get an obfuscated string from a source data using an automatic key generation from SHA-256 hashing function at each round, first instantiate a `Feistel.FPECipher`, passing it a hash engine, a base key and a number of rounds.
@@ -94,7 +94,7 @@ val decipheredNumber = cipher.decryptNumber(obfuscatedNumber)
 assert(decipheredNumber == sourceNumber)
 ```
 
-_NB: You'd also need provide the expected [BouncyCastle JAR file](./bcprov-jdk15to18-1.78.1.jar)._
+_NB: You'd also need provide the expected [BouncyCastle JAR file](./bcprov-jdk15to18-1.80.jar)._
 
 
 ### Other implementations
@@ -116,4 +116,4 @@ See the [LICENSE](LICENSE) file.
 
 
 <hr />
-&copy; 2021-2024 Cyril Dever. All rights reserved.
+&copy; 2021-2025 Cyril Dever. All rights reserved.
