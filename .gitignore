@@ -50,3 +50,4 @@ dependency-reduced-pom.xml
 
 INSTALL.md
 sonatype_credentials
+.bsp/*
