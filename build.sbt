@@ -1,6 +1,6 @@
 organization := "com.cyrildever"
 name := "feistel-jar"
-version := "1.5.8"
+version := "1.5.9"
 scalaVersion := "2.12.13"
 
 // Sonatype settings
@@ -11,8 +11,9 @@ sonatypeCredentialHost := "central.sonatype.com"
 credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
 
 // Publishing
-publishArtifact in (Compile, packageDoc) := true
-publishArtifact in (Compile, packageSrc) := true
+Compile / packageDoc / publishArtifact := true
+Compile / packageSrc / publishArtifact := true
+Test / publishArtifact := false
 
 // Assembly settings (keep your existing ones)
 assemblyMergeStrategy in assembly := {
@@ -26,5 +27,9 @@ libraryDependencies ++= Seq(
   "com.github.scopt" %% "scopt" % "4.1.0",
   "org.scalatest" %% "scalatest" % "3.2.19" % "test",
   "org.scorexfoundation" %% "scrypto" % "3.0.0",
-  "org.bouncycastle" % "bcprov-jdk15to18" % "1.83" % "provided"
+  "org.bouncycastle" % "bcprov-jdk15to18" % "1.84" % "provided"
 )
+
+ThisBuild / useGpg := true
+ThisBuild / pgpPassphrase := sys.env.get("PGP_PASSPHRASE").map(_.toArray)
+ThisBuild / PgpKeys.useGpg := true

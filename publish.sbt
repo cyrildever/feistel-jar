@@ -25,3 +25,4 @@ ThisBuild / homepage := Some(url("https://github.com/cyrildever/feistel-jar"))
 ThisBuild / pomIncludeRepository := { _ => false }
 ThisBuild / publishTo := sonatypePublishToBundle.value
 ThisBuild / publishMavenStyle := true
+ThisBuild / useGpg := true
